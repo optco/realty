@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-lt-installed="true"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>theattn:</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="assets/css2.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+      <link rel="apple-touch-icon" sizes="180x180" href="https://theattn.com/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://theattn.com/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://theattn.com/favicons/favicon-16x16.png">
+<link rel="manifest" href="https://theattn.com/favicons/site.webmanifest">
+<style>
+      #pl-indicator { position: fixed; top: 26px; left: 26px; display: flex; flex-direction: column; gap: 8px; z-index: 999999; pointer-events: none; opacity: 1; transition: opacity 0.3s ease; }
+      .pl-dot { width: 10px; height: 10px; border-radius: 0%; animation: plBounce 1.2s ease-in-out infinite; }
+      .pl-dot:nth-child(1) { background: #ff4d4d; }
+      .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
+      .pl-dot:nth-child(3) { background: #2ecc71; animation-delay: 0.3s; }
+      @keyframes plBounce { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-8px); opacity: 0.8; } }
+    </style></head>
+<body>
+    <div class="liquid-bg"></div>
+    
+       <main class="glass-panel">
+        <img src="assets/attn.png" class="fixed-center-img" alt="The ATTN:"><br>
+    <p class="tagline"><i>attention to detail</i></p>
+        
+        <button class="notify-btn" id="openContact">Contact Us</button>
+
+        <!-- Moved inside the glass panel -->
+        <section class="managed-sites-section">
+            <h2>Sites Managed</h2>
+            <div class="sites-grid">
+                <article class="site-card">
+                    <h3>Akhtar</h3>
+                    <a href="https://akhtar.co.za/" target="_blank" rel="noopener noreferrer">akhtar.co.za</a>
+                    <span class="site-status">Active &amp; Maintained</span>
+                </article>
+
+                <article class="site-card">
+                    <h3>Shamsi</h3>
+                    <a href="https://shamsi.co.za/" target="_blank" rel="noopener noreferrer">shamsi.co.za</a>
+                    <span class="site-status">Active &amp; Maintained</span>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal" hidden="">
+        <div class="modal-glass">
+            <button class="modal-close" id="closeContact" aria-label="Close">×</button>
+            <h2 class="modal-title">Get in touch</h2>
+            <p class="modal-desc">Have a tip, pitch, or question? We read every message.</p>
+            
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                <input type="hidden" name="access_key" value="65bb33ff-0316-4d93-9879-f4e3d82dfc52">
+                <input type="hidden" name="subject" value="New message via The Attn: Coming Soon">
+                
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required="" placeholder="Your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required="" placeholder="you@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required="" rows="4" placeholder="Your message..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+  
+
+
+    <script>
+        const modal = document.getElementById('contactModal');
+        const openBtn = document.getElementById('openContact');
+        const closeBtn = document.getElementById('closeContact');
+
+        function openModal() {
+            modal.hidden = false;
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => modal.classList.add('active'), 10);
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.hidden = true;
+                document.body.style.overflow = '';
+            }, 200);
+        }
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.hidden) closeModal();
+        });
+
+        // Optional: Show simple success message after submit
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', async (e) => {
+            const btn = contactForm.querySelector('.submit-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            
+            // Let Web3Forms handle the submit; this is just UX feedback
+            setTimeout(() => {
+                btn.textContent = 'Sent ✓';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    closeModal();
+                    contactForm.reset();
+                }, 1500);
+            }, 800);
+        });
+    </script>
+
+<script src="assets/load.js"></script><div class="fixed-corner-stripe" style="position: fixed; bottom: 0px; left: 0px; width: 100%; height: 25px; background: rgba(0, 0, 0, 0.5); z-index: 9999; pointer-events: none; border-radius: 48px 48px 0px 0px; transform: translateY(0px); opacity: 1; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s;"></div><a href="https://theattn.com/" class="fixed-corner-link" style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%) translateY(0px); display: block; z-index: 10000; line-height: 0; width: auto; max-width: none; min-width: 0px; opacity: 1; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s;"><img src="assets/opthead.png" alt="theattn.com" class="fixed-corner-img" style="width: 120px; height: auto; display: block; border: medium;"></a>
+    
+<script defer="defer" src="assets/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;cd0bfa81a6964788bb87a585196fc817&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+</body></html>
