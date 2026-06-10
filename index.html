@@ -27,14 +27,14 @@
         .redirect-info {
             margin: 1.5rem 0;
             font-size: 1.1rem;
-            color: rgba(255, 0, 0, 0.95);
+            color: rgba(0, 0, 0);
             text-align: center;
         }
         .redirect-info #countdown {
             font-weight: bold;
             font-size: 1.4rem;
-            color: #000;
-            background: rgba(255, 0, 0, 0.2); /* Subtle glass highlight */
+            color: #fff;
+            background: rgba(0, 0, 0); /* Subtle glass highlight */
             padding: 2px 12px;
             border-radius: 6px;
             display: inline-block;
@@ -104,7 +104,7 @@
         const closeBtn = document.getElementById('closeContact');
 
         // --- Countdown & Redirect Logic ---
-        let seconds = 5;
+        let seconds = 10;
         let countdownInterval = null;
         const targetUrl = "https://shamsi.co.za"; // Update this to your actual target URL
         const countdownElement = document.getElementById("countdown");
