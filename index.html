@@ -1,35 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" data-lt-installed="true"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta charset="UTF-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REALTY GROUP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
     <link href="assets/css2.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
-      <link rel="apple-touch-icon" sizes="180x180" href="https://theattn.com/favicons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://theattn.com/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://theattn.com/favicons/favicon-16x16.png">
-<link rel="manifest" href="https://theattn.com/favicons/site.webmanifest">
-<style>
-      #pl-indicator { position: fixed; top: 26px; left: 26px; display: flex; flex-direction: column; gap: 8px; z-index: 999999; pointer-events: none; opacity: 1; transition: opacity 0.3s ease; }
-      .pl-dot { width: 10px; height: 10px; border-radius: 0%; animation: plBounce 1.2s ease-in-out infinite; }
-      .pl-dot:nth-child(1) { background: #ff4d4d; }
-      .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
-      .pl-dot:nth-child(3) { background: #2ecc71; animation-delay: 0.3s; }
-      @keyframes plBounce { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-8px); opacity: 0.8; } }
-    </style></head>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="https://theattn.com/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://theattn.com/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://theattn.com/favicons/favicon-16x16.png">
+    <link rel="manifest" href="https://theattn.com/favicons/site.webmanifest">
+    
+    <style>
+        /* Page Loader Indicator */
+        #pl-indicator { position: fixed; top: 26px; left: 26px; display: flex; flex-direction: column; gap: 8px; z-index: 999999; pointer-events: none; opacity: 1; transition: opacity 0.3s ease; }
+        .pl-dot { width: 10px; height: 10px; border-radius: 0%; animation: plBounce 1.2s ease-in-out infinite; }
+        .pl-dot:nth-child(1) { background: #ff4d4d; }
+        .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
+        .pl-dot:nth-child(3) { background: #2ecc71; animation-delay: 0.3s; }
+        @keyframes plBounce { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-8px); opacity: 0.8; } }
+
+        /* Merged Countdown Styles */
+        .redirect-info {
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+        }
+        .redirect-info #countdown {
+            font-weight: bold;
+            font-size: 1.4rem;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2); /* Subtle glass highlight */
+            padding: 2px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            min-width: 20px;
+        }
+        .redirect-info .fallback {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+        .redirect-info .fallback a {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
     <div class="liquid-bg"></div>
     
-       <main class="glass-panel">
+    <main class="glass-panel">
         <img src="assets/attn.png" class="fixed-center-img" alt="The ATTN:"><br>
-    <p class="tagline">www.realtygroup.co.za</p>
+        <p class="tagline">www.realtygroup.co.za</p>
         
-        <button class="notify-btn" id="openContact">Contact Us</button>
+        <!-- Merged Countdown Section -->
+        <div class="redirect-info">
+            <p>Redirecting in <span id="countdown">5</span> seconds...</p>
+            <p class="fallback">If you are not redirected automatically, <a href="https://shamsi.co.za">click here</a>.</p>
+        </div>
 
-       
+        <button class="notify-btn" id="openContact">Contact Us</button>
     </main>
 
     <!-- Contact Modal -->
@@ -63,18 +98,47 @@
         </div>
     </div>
 
-  
-
-
     <script>
         const modal = document.getElementById('contactModal');
         const openBtn = document.getElementById('openContact');
         const closeBtn = document.getElementById('closeContact');
 
+        // --- Countdown & Redirect Logic ---
+        let seconds = 5;
+        let countdownInterval = null;
+        const targetUrl = "https://shamsi.co.za"; // Update this to your actual target URL
+        const countdownElement = document.getElementById("countdown");
+
+        function startCountdown() {
+            if (countdownInterval) return; // Prevent multiple intervals
+            countdownInterval = setInterval(function() {
+                seconds--;
+                if (countdownElement) countdownElement.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownInterval = null;
+                    window.location.replace(targetUrl);
+                }
+            }, 1000);
+        }
+
+        function pauseCountdown() {
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+            }
+        }
+
+        // Start the countdown initially
+        startCountdown();
+
+        // --- Modal Logic (with smart pause/resume) ---
         function openModal() {
             modal.hidden = false;
             document.body.style.overflow = 'hidden';
             setTimeout(() => modal.classList.add('active'), 10);
+            pauseCountdown(); // Pause redirect while user is contacting
         }
 
         function closeModal() {
@@ -82,6 +146,7 @@
             setTimeout(() => {
                 modal.hidden = true;
                 document.body.style.overflow = '';
+                startCountdown(); // Resume redirect after closing
             }, 200);
         }
 
@@ -115,9 +180,14 @@
         });
     </script>
 
-<script src="assets/load.js"></script><div class="fixed-corner-stripe" style="position: fixed; bottom: 0px; left: 0px; width: 100%; height: 25px; background: rgba(0, 0, 0, 0.5); z-index: 9999; pointer-events: none; border-radius: 48px 48px 0px 0px; transform: translateY(0px); opacity: 1; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s;"></div><a href="https://theattn.com/" class="fixed-corner-link" style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%) translateY(0px); display: block; z-index: 10000; line-height: 0; width: auto; max-width: none; min-width: 0px; opacity: 1; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s;"><img src="assets/opthead.png" alt="theattn.com" class="fixed-corner-img" style="width: 120px; height: auto; display: block; border: medium;"></a>
+    <script src="assets/load.js"></script>
     
-<script defer="defer" src="assets/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;cd0bfa81a6964788bb87a585196fc817&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+    <div class="fixed-corner-stripe" style="position: fixed; bottom: 0px; left: 0px; width: 100%; height: 25px; background: rgba(0, 0, 0, 0.5); z-index: 9999; pointer-events: none; border-radius: 48px 48px 0px 0px; transform: translateY(0px); opacity: 1; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s;"></div>
+    <a href="https://theattn.com/" class="fixed-corner-link" style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%) translateY(0px); display: block; z-index: 10000; line-height: 0; width: auto; max-width: none; min-width: 0px; opacity: 1; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s;">
+        <img src="assets/opthead.png" alt="theattn.com" class="fixed-corner-img" style="width: 120px; height: auto; display: block; border: medium;">
+    </a>
+    
+    <script defer="defer" src="assets/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;cd0bfa81a6964788bb87a585196fc817&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
 
-
-</body></html>
+</body>
+</html>
