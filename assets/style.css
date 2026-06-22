@@ -7,7 +7,7 @@
   --text-active: #008c00;
   --accent-blue: #2563eb;
   --accent-red: #ffffff;
-  --gradient-accent: linear-gradient(135deg, #0085B2 0%, #002040 100%);
+  --gradient-accent: linear-gradient(45deg, #0085B2 0%, #002040 100%);
 }
  .fixed-center-img {width: 400px; height: auto; display: block; border: none; margin: 0 auto;}
 
