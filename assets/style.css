@@ -81,29 +81,6 @@
     border: 1px solid rgba(15, 23, 42, 0.05);
 }
 
-.fixed-center-img {
-    /* Fluid height scaling */
-    height: clamp(80px, 8vw, 100px);
-    
-    /* ✅ Proportional width — never stretch/compress */
-    width: auto;
-    
-    /* ✅ Critical for mobile: never exceed viewport width */
-    max-width: 90vw;
-    
-    /* ✅ Ensure padding/margin don't cause overflow */
-    box-sizing: border-box;
-    
-    /* Centering + spacing */
-    display: block;
-    margin: 0 auto 16px;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   min-height: 100vh;
   display: flex;
