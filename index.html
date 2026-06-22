@@ -14,42 +14,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
     <link rel="manifest" href="favicons/site.webmanifest">
     
-    <style>
-        /* Page Loader Indicator */
-        #pl-indicator { position: fixed; top: 26px; left: 26px; display: flex; flex-direction: column; gap: 8px; z-index: 999999; pointer-events: none; opacity: 1; transition: opacity 0.3s ease; }
-        .pl-dot { width: 10px; height: 10px; border-radius: 0%; animation: plBounce 1.2s ease-in-out infinite; }
-        .pl-dot:nth-child(1) { background: #ff4d4d; }
-        .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
-        .pl-dot:nth-child(3) { background: #2ecc71; animation-delay: 0.3s; }
-        @keyframes plBounce { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-8px); opacity: 0.8; } }
-
-        /* Merged Countdown Styles */
-        .redirect-info {
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-            color: rgba(0, 0, 0);
-            text-align: center;
-        }
-        .redirect-info #countdown {
-            font-weight: bold;
-            font-size: 1.4rem;
-            color: #fff;
-            background: rgba(0, 0, 0);
-            padding: 2px 12px;
-            border-radius: 6px;
-            display: inline-block;
-            min-width: 20px;
-        }
-        .redirect-info .fallback {
-            font-size: 0.7rem;
-            margin-top: 0.5rem;
-            opacity: 0.8;
-        }
-        .redirect-info .fallback a {
-            color: #000;
-            text-decoration: underline;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="liquid-bg"></div>
