@@ -76,7 +76,7 @@
   img.alt = 'theattn.com';
   img.className = 'fixed-corner-img';
   img.style.cssText = `
-    width: 120px;
+    width: 90px;
     height: auto;
     display: block;
     border: none;
