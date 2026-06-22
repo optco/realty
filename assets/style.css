@@ -9,7 +9,7 @@
   --accent-red: #ffffff;
   --gradient-accent: linear-gradient(135deg, #008c00 0%, #008c00 50%, #008c00 100%);
 }
- .fixed-center-img {width: 90px; height: auto; display: block; border: none;}
+ .fixed-center-img {width: 120px; height: auto; display: block; border: none; align-items: center;}
 
 .managed-sites-section {
     margin-top: 2.5rem;
