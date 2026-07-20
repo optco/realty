@@ -102,7 +102,7 @@ body.modal-open {
   inset: -20%;
   background: 
     radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.18) 0%, transparent 55%),
-    radial-gradient(circle at 80% 75%, rgba(220, 38, 38, 0.14) 0%, transparent 55%),
+    radial-gradient(circle at 80% 75%, rgba(0, 0, 0, 0.14) 0%, transparent 55%),
     linear-gradient(145deg, #e2e8f0 0%, #f8fafc 100%);
   filter: blur(80px) saturate(1.1);
   animation: fluidDrift 22s ease-in-out infinite alternate;
