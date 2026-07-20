@@ -5,9 +5,9 @@
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-active: #008c00;
-  --accent-blue: #2563eb;
+  --accent-blue: #cccccc;
   --accent-red: #ffffff;
-  --gradient-accent: linear-gradient(45deg, #0085B2 0%, #002040 100%);
+  --gradient-accent: linear-gradient(45deg, #cccccc 0%, #cc0000 100%);
 }
  .fixed-center-img {width: 350px; height: auto; display: block; border: none; margin: 0 auto;}
 
